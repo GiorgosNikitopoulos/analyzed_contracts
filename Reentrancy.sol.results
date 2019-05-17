@@ -1,0 +1,25 @@
+WARNING:root:You are using evm version 1.8.2. The supported version is 1.7.3
+WARNING:root:You are using solc version 0.4.21, The latest supported version is 0.4.19
+INFO:root:contract ./allsolfiles/Reentrancy.sol:Reentrance:
+INFO:symExec:	============ Results ===========
+INFO:symExec:	  EVM Code Coverage: 			 97.7%
+INFO:symExec:	  Integer Underflow: 			 False
+INFO:symExec:	  Integer Overflow: 			 True
+INFO:symExec:	  Parity Multisig Bug 2: 		 False
+INFO:symExec:	  Callstack Depth Attack Vulnerability:  False
+INFO:symExec:	  Transaction-Ordering Dependence (TOD): True
+INFO:symExec:	  Timestamp Dependency: 		 False
+INFO:symExec:	  Re-Entrancy Vulnerability: 		 True
+INFO:symExec:./allsolfiles/Reentrancy.sol:11:9: Warning: Integer Overflow.
+        userBalance[msg.sender] += msg.value
+Integer Overflow occurs if:
+    userBalance[msg.sender] = 1
+INFO:symExec:Flow1
+./allsolfiles/Reentrancy.sol:28:16: Warning: Transaction-Ordering Dependency.
+        if( ! (msg.sender.call.value(amount)()
+Flow2
+./allsolfiles/Reentrancy.sol:17:16: Warning: Transaction-Ordering Dependency.
+        if( ! (msg.sender.call.value(userBalance[msg.sender])()
+INFO:symExec:./allsolfiles/Reentrancy.sol:17:16: Warning: Re-Entrancy Vulnerability.
+        if( ! (msg.sender.call.value(userBalance[msg.sender])()
+INFO:symExec:	====== Analysis Completed ======
