@@ -2,7 +2,8 @@ pragma solidity ^0.4.15;
 
 contract Missing{
     address private owner;
-
+    uint public balance;
+    
     modifier onlyowner {
         require(msg.sender==owner);
         _;
@@ -10,6 +11,11 @@ contract Missing{
 
     // The name of the constructor should be Missing
     // Anyone can call the IamMissing once the contract is deployed
+    
+    function addToBalance() payable {
+        balance += msg.value;    
+    }
+    
     function IamMissing()
         public 
     {
@@ -20,6 +26,6 @@ contract Missing{
         public 
         onlyowner
     {
-       owner.transfer(this.balance);
+       owner.transfer(balance);
     }
 }
